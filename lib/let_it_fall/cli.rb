@@ -14,7 +14,7 @@ module LetItFall
       end
     end
 
-    desc "code CODE", "Let specific character fall"
+    desc "code [CODE]", "Let specific character fall"
     option :speed, aliases:'-s', default:1, type: :numeric
     option :color, aliases:'-c', default:true, type: :boolean
     option :range, aliases:'-r', default:false, type: :boolean
