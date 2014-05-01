@@ -2,19 +2,8 @@ require "let_it_fall/code"
 require "let_it_fall/cli"
 require "let_it_fall/version"
 
-module CoreExt
-  refine Fixnum do
-    def chr
-      super("UTF-8")
-    end
-  end
-end
-
 module LetItFall
-  using CoreExt
-
   class Render
-
     def self.run(mark, screen, colorize:false, interval:0.1)
       new(mark, screen, colorize:colorize, interval:interval).run
     end
@@ -28,7 +17,7 @@ module LetItFall
         else
           CODESET[mark.intern] || CODESET[:snow]
         end
-      @marks = Array(marks).map { |code| code.chr }.cycle
+      @marks = Array(marks).map { |code| code.chr("UTF-8") }.cycle
       @interval = interval
       @screen = {}
       $stdout.sync = true
