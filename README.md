@@ -1,6 +1,6 @@
 # LetItFall
 
-Let it snow or something in the mac terminal.
+Let it snow or something in the Mac terminal.
 
 ## Installation
 
@@ -22,11 +22,11 @@ open Mac terminal, then try following command.
 
     $ let_it_fall beer
 
-Or,
+Or
 
     $ let_it_fall code 0x2660 0x2666 -r
 
-Try `let_it_fall help` for more info.
+`let_it_fall help` for more info.
 
 ## Contributing
 
