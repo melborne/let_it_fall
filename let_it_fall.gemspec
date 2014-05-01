@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = LetItFall::VERSION
   spec.authors       = ["kyoendo"]
   spec.email         = ["postagie@gmail.com"]
-  spec.summary       = %q{Let it snow or something.}
-  spec.description   = %q{Let it snow or something.}
+  spec.summary       = %q{Let it snow or something in the mac terminal.}
+  spec.description   = %q{Let it snow or something in the mac terminal.}
   spec.homepage      = ""
   spec.license       = "MIT"
 

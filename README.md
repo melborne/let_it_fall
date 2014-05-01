@@ -1,6 +1,6 @@
 # LetItFall
 
-TODO: Write a gem description
+Let it snow or something in the mac terminal.
 
 ## Installation
 
@@ -18,7 +18,15 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+open Mac terminal, then try following command.
+
+    $ let_it_fall beer
+
+Or,
+
+    $ let_it_fall code 0x2660 0x2666 -r
+
+Try `let_it_fall help` for more info.
 
 ## Contributing
 
