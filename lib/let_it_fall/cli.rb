@@ -14,6 +14,14 @@ module LetItFall
       end
     end
 
+    desc "rand", "Let something fall randomly"
+    option :speed, aliases:'-s', default:1, type: :numeric
+    def rand
+      code = LetItFall::CODESET.keys.sample
+      run(code, options[:speed], options[:color])
+      
+    end
+
     desc "code [CODE]", "Let specific character fall"
     option :speed, aliases:'-s', default:1, type: :numeric
     option :color, aliases:'-c', default:true, type: :boolean
