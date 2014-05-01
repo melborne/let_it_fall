@@ -1,4 +1,5 @@
 require "let_it_fall/version"
+require "let_it_fall/cli"
 
 module CoreExt
   refine Fixnum do
@@ -8,9 +9,9 @@ module CoreExt
   end
 end
 
-module LetIt
+module LetItFall
   using CoreExt
-  class Fall
+  class Render
     CODESET = {
       faces: [*0x1F600..0x1F64F] - [*0x1F641..0x1F644],
       kanjis: (0x4E00..0x4F00),
@@ -81,7 +82,7 @@ if __FILE__ == $0
     colorize = ARGV[1].to_s.match(/^c/i) ? true : false
     interval = ARGV[2].to_f    
     screen = IO.console.winsize
-    LetIt::Fall.run(mark, screen, colorize:colorize, interval:interval)
+    LetItFall::Render.run(mark, screen, colorize:colorize, interval:interval)
   rescue Exception => e
     puts "Error: Run in terminal."
     exit(0)

@@ -1,3 +1,5 @@
 #!/usr/bin/env ruby
 
 require 'let_it_fall'
+
+LetItFall::CLI.start(ARGV)
