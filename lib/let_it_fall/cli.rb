@@ -35,6 +35,12 @@ module LetItFall
       run(code, options[:speed], options[:color])
     end
 
+    desc "version", "Show LetItFall version"
+    def version
+      puts "LetItFall #{LetItFall::VERSION} (c) 2014 kyoendo"
+    end
+    map "-v" => :version
+
     no_tasks do
       def run(name, speed, color)
         speed = 0.1 if speed < 0.1
