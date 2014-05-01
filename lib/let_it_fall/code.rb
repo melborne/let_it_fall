@@ -1,0 +1,13 @@
+module LetItFall
+  CODESET = {
+    face:   [*0x1F600..0x1F64F] - [*0x1F641..0x1F644],
+    kanji:  (0x4E00..0x4F00),
+    snow:   0x2736,
+    time:   (0x1F550..0x1f567),
+    animal: (0x1F40C..0x1F43C),
+    moon:   (0x1F311..0x1F315),
+    ruby:   0x1F48E,
+    python: 0x1F40D,
+    beer:   0x1F37A,
+  }
+end
