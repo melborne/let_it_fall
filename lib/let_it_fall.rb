@@ -22,8 +22,13 @@ module LetItFall
     def initialize(mark, screen, colorize:false, interval:0.1)
       @y, @x = screen
       @colorize = colorize
-      marks = Array( CODESET[mark.intern] || CODESET[:snow] )
-      @marks = marks.map { |code| code.chr }.cycle
+      marks =
+        if Array===mark
+          mark.map { |m| m.to_i(16) }
+        else
+          CODESET[mark.intern] || CODESET[:snow]
+        end
+      @marks = Array(marks).map { |code| code.chr }.cycle
       @interval = interval
       @screen = {}
       $stdout.sync = true
