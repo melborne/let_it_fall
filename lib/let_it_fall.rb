@@ -4,13 +4,17 @@ require "let_it_fall/version"
 
 module LetItFall
   class Render
-    def self.run(mark, screen, colorize:false, interval:0.1)
-      new(mark, screen, colorize:colorize, interval:interval).run
+    def self.run(mark, screen, color:nil, interval:0.1)
+      new(mark, screen, color:color, interval:interval).run
     end
 
-    def initialize(mark, screen, colorize:false, interval:0.1)
+    def initialize(mark, screen, color:nil, interval:0.1)
       @y, @x = screen
-      @colorize = colorize
+      if [nil, *31..37].include?(color)
+        @color = color
+      else
+        raise ArgumentError, "color should be 31-37 or nil"
+      end
       @marks = build_marks(mark)
       @interval = interval
       @screen = {}
@@ -49,7 +53,7 @@ module LetItFall
         if @screen[x] <= @y*0.95
           @screen[x] += 1
           clear_prev_mark(x, y)
-          color = @colorize ? [*31..37].sample : 37
+          color = @color || [*31..37].sample
           draw_mark(x, @screen[x], marks.next, color)
         else
           next
@@ -58,10 +62,10 @@ module LetItFall
     end
   
     def clear_prev_mark(x, y)
-      draw_mark(x, y, " ")
+      draw_mark(x, y, " ", 37)
     end
 
-    def draw_mark(x, y, mark, color=37)
+    def draw_mark(x, y, mark, color)
       print "\e[%dm \e[%d;%dH%s \e[0;0H \e[0m" % [color, y, x, mark]
     end
   end

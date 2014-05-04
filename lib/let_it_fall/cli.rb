@@ -6,9 +6,7 @@ module LetItFall
     LetItFall::CODESET.keys.each do |command|
       desc "#{command}", "Let #{command} fall"
       option :speed, aliases:'-s', default:1, type: :numeric
-      if [:snow, :kanji].include?(command)
-        option :color, aliases:'-c', default:true, type: :boolean
-      end
+      option :color, aliases:'-c', default:nil, type: :numeric
       define_method(command) do
         run(command, options[:speed], options[:color])
       end
@@ -24,7 +22,7 @@ module LetItFall
 
     desc "code [CODE]", "Let specific character fall"
     option :speed, aliases:'-s', default:1, type: :numeric
-    option :color, aliases:'-c', default:true, type: :boolean
+    option :color, aliases:'-c', default:nil, type: :numeric
     option :range, aliases:'-r', default:false, type: :boolean
     def code(*code)
       if options[:range]
@@ -45,7 +43,7 @@ module LetItFall
       def run(name, speed, color)
         speed = 0.1 if speed < 0.1
         interval = 0.05 / speed
-        Render.run(name, IO.console.winsize, interval:interval, colorize:color)
+        Render.run(name, IO.console.winsize, interval:interval, color:color)
       end
     end
   end
