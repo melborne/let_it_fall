@@ -43,6 +43,10 @@ module LetItFall
     tower:   0x1F5FC,
     japan:   0x1F5FE,
     liberty: 0x1F5FD,
+    ghost:   0x1F47B,
+    angel:   0x1F47C,
+    alien:   0x1F47D,
+    kiss:    0x1F48B,
 
   }
 end
