@@ -33,7 +33,7 @@ module LetItFall
           print "\e[?25h\e[0;0H" # show cursor and set 0,0 pos
           exit(0)
         end
-        print_marks(rand(@x), 0, @marks.dup)
+        print_marks(rand(@x), 0, @marks)
         sleep @interval
       end
     end
@@ -43,13 +43,17 @@ module LetItFall
       print "\e[?25l\e[2J"
     end
 
-    def print_marks(pos_x, pos_y, mark)
-      @screen[pos_x] = [pos_y, mark]
-      @screen.each do |x, (y, mark)|
-        @screen[x][0] += 1 if @screen[x][0] <= @y*0.9
-        clear_prev_mark(x, y)
-        color = @colorize ? [*31..37].sample : 37
-        draw_mark(x, @screen[x][0], mark.next, color)
+    def print_marks(pos_x, pos_y, marks)
+      @screen[pos_x] = pos_y
+      @screen.each do |x, y|
+        if @screen[x] <= @y*0.95
+          @screen[x] += 1
+          clear_prev_mark(x, y)
+          color = @colorize ? [*31..37].sample : 37
+          draw_mark(x, @screen[x], marks.next, color)
+        else
+          next
+        end
       end
     end
   
