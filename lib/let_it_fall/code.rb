@@ -47,6 +47,7 @@ module LetItFall
     angel:   0x1F47C,
     alien:   0x1F47D,
     kiss:    0x1F48B,
+    alphabet: (0x0021..0x007E),
 
   }
 end
