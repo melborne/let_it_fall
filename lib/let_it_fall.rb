@@ -53,7 +53,7 @@ module LetItFall
       @screen.each do |x, y|
         if @screen[x] <= @y*0.95
           @screen[x] += 1
-          clear_prev_mark(x, y) unless @matrix
+          clear_prev_mark(x, y) unless @matrix && [true, true, false][rand 3]
           color = @color || [*31..37].sample
           draw_mark(x, @screen[x], marks.next, color)
         end
