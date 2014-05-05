@@ -18,7 +18,13 @@ module LetItFall
     def rand
       code = LetItFall::CODESET.keys.sample
       run(code, options[:speed], options[:color], false)
-      
+    end
+
+    desc "matrix [MARK]", "Let it matrix"
+    option :speed, aliases:'-s', default:1, type: :numeric
+    option :color, aliases:'-c', default:32, type: :numeric
+    def matrix(mark=:alphabet)
+      run(mark, options[:speed], options[:color], true)
     end
 
     desc "code [CODE]", "Let specific character fall"
