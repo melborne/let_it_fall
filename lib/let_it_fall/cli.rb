@@ -7,8 +7,9 @@ module LetItFall
       desc "#{command}", "Let #{command} fall"
       option :speed, aliases:'-s', default:1, type: :numeric
       option :color, aliases:'-c', default:nil, type: :numeric
+      option :matrix, aliases:'-m', default:false, type: :boolean
       define_method(command) do
-        run(command, options[:speed], options[:color])
+        run(command, options[:speed], options[:color], options[:matrix])
       end
     end
 
@@ -16,7 +17,7 @@ module LetItFall
     option :speed, aliases:'-s', default:1, type: :numeric
     def rand
       code = LetItFall::CODESET.keys.sample
-      run(code, options[:speed], options[:color])
+      run(code, options[:speed], options[:color], false)
       
     end
 
@@ -24,13 +25,14 @@ module LetItFall
     option :speed, aliases:'-s', default:1, type: :numeric
     option :color, aliases:'-c', default:nil, type: :numeric
     option :range, aliases:'-r', default:false, type: :boolean
+    option :matrix, aliases:'-m', default:false, type: :boolean
     def code(*code)
       if options[:range]
         st, ed = code.minmax
         code = Range.new(st.to_i(16), ed.to_i(16))
                     .to_a.map { |i| i.to_s(16) }
       end
-      run(code, options[:speed], options[:color])
+      run(code, options[:speed], options[:color], options[:matrix])
     end
 
     desc "version", "Show LetItFall version"
@@ -40,10 +42,10 @@ module LetItFall
     map "-v" => :version
 
     no_tasks do
-      def run(name, speed, color)
+      def run(name, speed, color, matrix)
         speed = 0.1 if speed < 0.1
         interval = 0.05 / speed
-        Render.run(name, IO.console.winsize, interval:interval, color:color)
+        Render.run(name, IO.console.winsize, interval:interval, color:color, matrix:matrix)
       end
     end
   end
