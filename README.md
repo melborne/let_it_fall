@@ -18,15 +18,25 @@ Or install it yourself as:
 
 ## Usage
 
-open Mac terminal, then try following command.
+Open the Mac terminal, then try following command.
 
     $ let_it_fall beer
 
-Or
+You also enjoy over 40 commands other than `beer` like `money`, `face` or `kanji`.
 
-    $ let_it_fall code 0x2660 0x2666 -r
+`code` command is a special. It takes one or more unicodes which specify characters to fall.
 
-`let_it_fall help` for more info.
+    $ let_it_fall code 0x2660 0x2666 -r # code command with --range option
+
+Or try `matrix` command.
+
+    $ let_it_fall matrix
+
+If you prefer another character rather than latin one, pass it to the command.
+
+    $ let_it_fall matrix kanji
+
+These command takes `--speed` option(ex. -s=2), and some also takes `--color` option(ex. -c=31). `let_it_fall help` for more info.
 
 ## Contributing
 
