@@ -22,15 +22,6 @@ module LetItFall
       $stdout.sync = true
     end
 
-    def build_marks(mark)
-      marks =
-        case mark
-        when Array then mark.map { |m| m.to_i(16) }
-        else CODESET[mark.intern] || CODESET[:snow]
-        end
-      Array(marks).map { |code| code.chr("UTF-8") }.cycle
-    end
-
     def run
       clear_screen
       marks = build_marks(@mark)
@@ -54,6 +45,15 @@ module LetItFall
     end
 
     private
+    def build_marks(mark)
+      marks =
+        case mark
+        when Array then mark.map { |m| m.to_i(16) }
+        else CODESET[mark.intern] || CODESET[:snow]
+        end
+      Array(marks).map { |code| code.chr("UTF-8") }.cycle
+    end
+
     def select_next_marks(mark)
       unless @_markset
         keys = CODESET.keys
