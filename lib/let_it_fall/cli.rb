@@ -27,7 +27,7 @@ module LetItFall
       run(mark, options[:speed], options[:color], true)
     end
 
-    desc "code [CODE]", "Let specific character fall"
+    desc "code CODE", "Let specific character fall with unicode(s)"
     option :speed, aliases:'-s', default:1, type: :numeric
     option :color, aliases:'-c', default:nil, type: :numeric
     option :range, aliases:'-r', default:false, type: :boolean
