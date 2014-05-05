@@ -15,7 +15,7 @@ module LetItFall
       else
         raise ArgumentError, "color should be 31-37 or nil"
       end
-      @marks = build_marks(mark)
+      @mark = mark
       @interval = interval
       @screen = {}
       @matrix = matrix
@@ -33,12 +33,19 @@ module LetItFall
 
     def run
       clear_screen
+      marks = build_marks(@mark)
+      Thread.new do
+        while STDIN.getc # hit return
+          marks = select_next_marks(@mark)
+        end
+      end
+
       loop do
         trap(:INT) do
           reset_screen
           exit(0)
         end
-        print_marks(rand(@x), 0, @marks)
+        print_marks(rand(@x), 0, marks)
         sleep @interval
       end
     ensure
@@ -47,6 +54,14 @@ module LetItFall
     end
 
     private
+    def select_next_marks(mark)
+      unless @_markset
+        keys = CODESET.keys
+        @_markset = keys.rotate(keys.index(@mark)+1).cycle
+      end
+      build_marks(@_markset.next)
+    end
+
     def clear_screen
       print "\e[?25l\e[2J" # hide cursor and clear screen
     end
