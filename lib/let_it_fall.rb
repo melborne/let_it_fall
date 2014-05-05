@@ -35,17 +35,24 @@ module LetItFall
       clear_screen
       loop do
         trap(:INT) do
-          print "\e[?25h\e[0;0H" # show cursor and set 0,0 pos
+          reset_screen
           exit(0)
         end
         print_marks(rand(@x), 0, @marks)
         sleep @interval
       end
+    ensure
+      reset_screen
+      exit(0)
     end
 
     private
     def clear_screen
-      print "\e[?25l\e[2J"
+      print "\e[?25l\e[2J" # hide cursor and clear screen
+    end
+
+    def reset_screen
+      print "\e[?25h\e[0;0H" # show cursor and set 0,0 pos
     end
 
     def print_marks(pos_x, pos_y, marks)
