@@ -55,8 +55,6 @@ module LetItFall
           clear_prev_mark(x, y)
           color = @color || [*31..37].sample
           draw_mark(x, @screen[x], marks.next, color)
-        else
-          next
         end
       end
     end
