@@ -31,17 +31,16 @@ module LetItFall
         end
       end
 
+      trap(:INT) do
+        exit(0)
+      end
+
       loop do
-        trap(:INT) do
-          reset_screen
-          exit(0)
-        end
         print_marks(rand(@x), 0, marks)
         sleep @interval
       end
     ensure
       reset_screen
-      exit(0)
     end
 
     private
