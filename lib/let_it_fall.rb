@@ -16,15 +16,11 @@ module LetItFall
       else
         raise ArgumentError, "color should be 31-37 or nil"
       end
-      if [nil, *1..10].include?(auto)
-        @auto = auto
-      else
-        raise ArgumentError, "auto should be 1-10 or nil"
-      end
       @mark = mark
       @interval = interval
       @screen = {}
       @matrix = matrix
+      @auto = auto
       $stdout.sync = true
     end
 
