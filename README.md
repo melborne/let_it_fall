@@ -26,6 +26,8 @@ You also enjoy over 40 commands other than `beer` like `money`, `face` or `kanji
 
 During the fall running, hitting a return key will change the character to fall.
 
+Also `let_it_fall go` command let them fall in rotation automatically without the key hitting.
+
 `code` command is a special. It takes one or more unicodes which specify characters to fall.
 
     $ let_it_fall code 0x2660 0x2666 -r # code command with --range option
