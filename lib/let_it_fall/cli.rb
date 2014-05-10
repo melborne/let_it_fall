@@ -28,8 +28,8 @@ module LetItFall
     end
 
     desc "go", "Let it fall in rotation"
-    option :speed, aliases:'-s', default:1, type: :numeric
-    option :color, aliases:'-c', default:32, type: :numeric
+    option :speed, aliases:'-s', default:2, type: :numeric
+    option :color, aliases:'-c', default:nil, type: :numeric
     option :interval, aliases:'-i', default:3, type: :numeric
     def go
       code = LetItFall::CODESET.keys.sample
