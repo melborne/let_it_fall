@@ -15,6 +15,7 @@ module LetItFall
 
     desc "rand", "Let something fall randomly"
     option :speed, aliases:'-s', default:1, type: :numeric
+    option :color, aliases:'-c', default:nil, type: :numeric
     def rand
       code = LetItFall::CODESET.keys.sample
       run(code, options[:speed], options[:color], false)
