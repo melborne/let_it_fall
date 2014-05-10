@@ -27,6 +27,16 @@ module LetItFall
       run(mark, options[:speed], options[:color], true)
     end
 
+    desc "go", "Let it fall in rotation"
+    option :speed, aliases:'-s', default:1, type: :numeric
+    option :color, aliases:'-c', default:32, type: :numeric
+    option :interval, aliases:'-i', default:3, type: :numeric
+    def go
+      code = LetItFall::CODESET.keys.sample
+      run(code, options[:speed], options[:color], false, options[:interval])
+    end
+    map "auto" => :go
+
     desc "code CODE", "Let specific character fall with unicode(s)"
     option :speed, aliases:'-s', default:1, type: :numeric
     option :color, aliases:'-c', default:nil, type: :numeric
@@ -48,10 +58,10 @@ module LetItFall
     map "-v" => :version
 
     no_tasks do
-      def run(name, speed, color, matrix)
+      def run(name, speed, color, matrix, auto=nil)
         speed = 0.1 if speed < 0.1
         interval = 0.05 / speed
-        Render.run(name, IO.console.winsize, interval:interval, color:color, matrix:matrix)
+        Render.run(name, IO.console.winsize, interval:interval, color:color, matrix:matrix, auto:auto)
       end
     end
   end

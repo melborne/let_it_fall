@@ -4,16 +4,22 @@ require "let_it_fall/version"
 
 module LetItFall
   class Render
-    def self.run(mark, screen, color:nil, interval:0.1, matrix:false)
-      new(mark, screen, color:color, interval:interval, matrix:matrix).run
+    def self.run(mark, screen, color:nil, interval:0.1, matrix:false, auto:nil)
+      new(mark, screen, color:color, interval:interval, matrix:matrix, auto:auto).run
     end
 
-    def initialize(mark, screen, color:nil, interval:0.1, matrix:false)
+    # auto: nil or interval time(Integer)
+    def initialize(mark, screen, color:nil, interval:0.1, matrix:false, auto:nil)
       @y, @x = screen
       if [nil, *31..37].include?(color)
         @color = color
       else
         raise ArgumentError, "color should be 31-37 or nil"
+      end
+      if [nil, *1..10].include?(auto)
+        @auto = auto
+      else
+        raise ArgumentError, "auto should be 1-10 or nil"
       end
       @mark = mark
       @interval = interval
@@ -35,7 +41,13 @@ module LetItFall
         exit(0)
       end
 
+      t = Time.now
       loop do
+        if @auto && Time.now - t > @auto
+          marks = select_next_marks(@mark)
+          t = Time.now
+        end
+
         print_marks(rand(@x), 0, marks)
         sleep @interval
       end
