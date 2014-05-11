@@ -38,7 +38,7 @@ module LetItFall
     end
     map "auto" => :go
 
-    desc "code CODE", "Let specific character fall with unicode(s)"
+    desc "code CODE", "Let specific character fall by unicode(s)"
     option :speed, aliases:'-s', default:1, type: :numeric
     option :color, aliases:'-c', default:nil, type: :numeric
     option :range, aliases:'-r', default:false, type: :boolean
@@ -51,6 +51,26 @@ module LetItFall
       end
       run(code, options[:speed], options[:color], options[:matrix])
     end
+
+    desc "list", "List of all commands"
+    def list
+      puts "Commands:"
+      puts "  let_it_fall MARK             # Let any of following MARKs fall"
+      LetItFall::CODESET.keys.sort.each_with_index do |mark, i|
+        print "\n    " if i%8==0
+        print mark, " "
+      end
+      puts "\n\n"
+      puts "  let_it_fall matrix [MARK]   # Let it matrix!"
+      puts "  let_it_fall rand            # Let something fall randomly"
+      puts "  let_it_fall go              # Let them Go!"
+      puts "  let_it_fall code CODE       # Let specific character fall by unicode(s) ex. code 0x2660"
+      puts "  let_it_fall help [COMMAND]  # Describe available commands or one specific command"
+      puts "  let_it_fall version         # Show LetItFall version"
+    end
+    map "commands" => :list
+    default_task :list
+    map "-h" => :list
 
     desc "version", "Show LetItFall version"
     def version
