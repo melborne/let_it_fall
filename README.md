@@ -40,7 +40,7 @@ If you prefer another character rather than latin one, pass it to the command.
 
     $ let_it_fall matrix kanji
 
-These command takes `--speed` option(ex. -s=2), and some also takes `--color` option(ex. -c=31). `let_it_fall help` for more info.
+These command takes `--speed` option(ex. -s=2), and some also takes `--color` option(ex. -c=31). `let_it_fall -h` for more info.
 
 ## Contributing
 
