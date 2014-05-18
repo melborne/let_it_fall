@@ -24,7 +24,7 @@ module LetItFall
     desc "matrix [MARK]", "Let it matrix"
     option :speed, aliases:'-s', default:1, type: :numeric
     option :color, aliases:'-c', default:32, type: :numeric
-    def matrix(mark=:latin)
+    def matrix(mark=:latins)
       run(mark, options[:speed], options[:color], true)
     end
 
