@@ -22,7 +22,7 @@ Open the Mac terminal, then try following command.
 
     $ let_it_fall beer
 
-You also enjoy over 40 commands other than `beer` like `money`, `face` or `kanji`.
+You also enjoy over 800 commands other than `beer` like `sunflower`, `faces` or `moons`.
 
 During the fall running, hitting a return key will change the character to fall.
 
@@ -38,7 +38,7 @@ Or try `matrix` command.
 
 If you prefer another character rather than latin one, pass it to the command.
 
-    $ let_it_fall matrix kanji
+    $ let_it_fall matrix kanjis
 
 These command takes `--speed` option(ex. -s=2), and some also takes `--color` option(ex. -c=31). `let_it_fall -h` for more info.
 
